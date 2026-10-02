@@ -1,0 +1,1333 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bản đồ Mayonaka Heart Tune</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14213d;--ink-2:#22325a;--paper:#f7f8fb;--grid:#e4e8f1;--text:#1b2333;--muted:#5b6577;--gold:#e0a526;--on-ink:#f3f5fa;--line:#d5dbe7;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--text:#e9edf6;--muted:#a7b0c4;--line:#33436b;--page:#0d1629}}
+:root[data-theme="dark"]{--text:#e9edf6;--muted:#a7b0c4;--line:#33436b;--page:#0d1629}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--page,#eef1f7);color:var(--text);font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5}
+header{background:var(--ink);color:var(--on-ink);padding:28px clamp(16px,4vw,40px) 22px}
+.wrap{max-width:1400px;margin:0 auto}
+h1{margin:0;font-size:clamp(1.45rem,3.2vw,2.1rem);font-weight:700;letter-spacing:-.01em;line-height:1.2}
+h1 span{display:block;width:44px;height:3px;background:var(--gold);margin-top:14px;border-radius:2px}
+.lede{margin:12px 0 0;color:#c9d1e4;max-width:62ch}
+.bar{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;margin-top:22px}
+.seg{display:inline-flex;background:var(--ink-2);border-radius:999px;padding:4px}
+.seg button{font:inherit;font-size:.95rem;font-weight:500;color:#c9d1e4;background:none;border:0;border-radius:999px;padding:7px 18px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--on-ink);color:var(--ink)}
+.zoom{display:inline-flex;gap:6px}
+.zoom button{font:inherit;font-size:.9rem;color:var(--on-ink);background:transparent;border:1px solid #3a4b78;border-radius:8px;padding:6px 12px;cursor:pointer}
+.zoom button:hover,.seg button:hover{outline:none;filter:brightness(1.15)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{padding:20px clamp(12px,3vw,40px) 32px}
+.panel{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;border:1px solid var(--line);border-radius:14px;overflow:auto;max-width:100%;height:calc(100vh - 290px);min-height:420px}
+.panel svg{display:block;height:auto;margin:0 auto}
+.panel svg g.graph > polygon[fill="white"]{fill:transparent}
+.panel a{cursor:pointer}
+.panel svg[data-kind="graphviz"] a:hover path,.panel svg[data-kind="graphviz"] a:hover polygon{stroke-width:2.6}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin:14px 2px 0;color:var(--muted);font-size:.9rem}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:22px;height:14px;border-radius:4px;display:inline-block}
+.sw.group{background:#1d6fa5}.sw.page{background:#fff;border:1.5px solid #1d6fa5}.sw.empty{background:#fff;border:1.5px dashed #1d6fa5}
+.sw.cross{height:0;border-top:2px dashed #b9bfca;border-radius:0}
+[hidden]{display:none!important}
+@media (max-width:600px){.panel{height:calc(100vh - 300px);min-height:460px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Bản đồ Mayonaka Heart Tune<span aria-hidden="true"></span></h1>
+  <p class="lede">Bấm vào một ô trắng để mở trang đó trong Notion, ở tab mới. Rê chuột lên ô trong bản Graphviz để xem tên đầy đủ của trang.</p>
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Chọn kiểu vẽ">
+      <button type="button" data-show="graphviz" aria-pressed="true">Graphviz</button>
+      <button type="button" data-show="d2" aria-pressed="false">D2</button>
+    </div>
+    <div class="zoom" role="group" aria-label="Thu phóng">
+      <button type="button" data-zoom="-1">Thu nhỏ</button>
+      <button type="button" data-zoom="1">Phóng to</button>
+      <button type="button" data-zoom="0">Vừa khung</button>
+    </div>
+  </div>
+</div></header>
+<main><div class="wrap">
+  <div class="panel" id="panel">
+    <div id="v-graphviz"><svg data-kind="graphviz" width="919pt" height="937pt"
+ viewBox="0.00 0.00 919.00 937.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 933)">
+<title>%3</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-933 915,-933 915,4 -4,4"/>
+
+<g id="node1" class="node">
+<title>R</title>
+<g id="a_node1"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480cf97c1daced307609e" xlink:title="MAYONAKA HEART TUNE">
+<path fill="#222222" stroke="black" d="M166,-459C166,-459 12,-459 12,-459 6,-459 0,-453 0,-447 0,-447 0,-435 0,-435 0,-429 6,-423 12,-423 12,-423 166,-423 166,-423 172,-423 178,-429 178,-435 178,-435 178,-447 178,-447 178,-453 172,-459 166,-459"/>
+<text text-anchor="middle" x="89" y="-437.6" font-family="Arial" font-size="13.00" fill="white">MAYONAKA HEART TUNE</text>
+</a>
+</g>
+</g>
+
+<g id="node2" class="node">
+<title>g1</title>
+<path fill="#5c677d" stroke="#5c677d" d="M319,-835C319,-835 243,-835 243,-835 237,-835 231,-829 231,-823 231,-823 231,-811 231,-811 231,-805 237,-799 243,-799 243,-799 319,-799 319,-799 325,-799 331,-805 331,-811 331,-811 331,-823 331,-823 331,-829 325,-835 319,-835"/>
+<text text-anchor="middle" x="281" y="-814.2" font-family="Arial" font-size="11.00" fill="white">Hồ sơ 4 nhân vật</text>
+</g>
+
+<g id="edge1" class="edge">
+<title>R&#45;&gt;g1</title>
+<path fill="none" stroke="#5c677d" stroke-width="2" d="M99.16,-459.14C131.26,-522.65 238.41,-734.69 270.71,-798.61"/>
+</g>
+
+<g id="node10" class="node">
+<title>g2</title>
+<path fill="#1d6fa5" stroke="#1d6fa5" d="M322.5,-600C322.5,-600 239.5,-600 239.5,-600 233.5,-600 227.5,-594 227.5,-588 227.5,-588 227.5,-576 227.5,-576 227.5,-570 233.5,-564 239.5,-564 239.5,-564 322.5,-564 322.5,-564 328.5,-564 334.5,-570 334.5,-576 334.5,-576 334.5,-588 334.5,-588 334.5,-594 328.5,-600 322.5,-600"/>
+<text text-anchor="middle" x="281" y="-579.2" font-family="Arial" font-size="11.00" fill="white">Apollo và thiên văn</text>
+</g>
+
+<g id="edge9" class="edge">
+<title>R&#45;&gt;g2</title>
+<path fill="none" stroke="#1d6fa5" stroke-width="2" d="M114.45,-459.14C150.93,-486.22 219.22,-536.89 255.64,-563.93"/>
+</g>
+
+<g id="node26" class="node">
+<title>g3</title>
+<path fill="#7b4ea3" stroke="#7b4ea3" d="M329.5,-494C329.5,-494 232.5,-494 232.5,-494 226.5,-494 220.5,-488 220.5,-482 220.5,-482 220.5,-470 220.5,-470 220.5,-464 226.5,-458 232.5,-458 232.5,-458 329.5,-458 329.5,-458 335.5,-458 341.5,-464 341.5,-470 341.5,-470 341.5,-482 341.5,-482 341.5,-488 335.5,-494 329.5,-494"/>
+<text text-anchor="middle" x="281" y="-473.2" font-family="Arial" font-size="11.00" fill="white">Vở kịch As You Like It</text>
+</g>
+
+<g id="edge25" class="edge">
+<title>R&#45;&gt;g3</title>
+<path fill="none" stroke="#7b4ea3" stroke-width="2" d="M178.05,-457.22C192.41,-459.87 206.99,-462.55 220.46,-465.03"/>
+</g>
+
+<g id="node32" class="node">
+<title>g4</title>
+<path fill="#b5487a" stroke="#b5487a" d="M313.5,-424C313.5,-424 248.5,-424 248.5,-424 242.5,-424 236.5,-418 236.5,-412 236.5,-412 236.5,-400 236.5,-400 236.5,-394 242.5,-388 248.5,-388 248.5,-388 313.5,-388 313.5,-388 319.5,-388 325.5,-394 325.5,-400 325.5,-400 325.5,-412 325.5,-412 325.5,-418 319.5,-424 313.5,-424"/>
+<text text-anchor="middle" x="281" y="-403.2" font-family="Arial" font-size="11.00" fill="white">Tuyến Shinobu</text>
+</g>
+
+<g id="edge31" class="edge">
+<title>R&#45;&gt;g4</title>
+<path fill="none" stroke="#b5487a" stroke-width="2" d="M178.05,-424.78C198.24,-421.06 218.85,-417.26 236.21,-414.07"/>
+</g>
+
+<g id="node37" class="node">
+<title>g5</title>
+<path fill="#8a5a2b" stroke="#8a5a2b" d="M334.5,-330C334.5,-330 227.5,-330 227.5,-330 221.5,-330 215.5,-324 215.5,-318 215.5,-318 215.5,-306 215.5,-306 215.5,-300 221.5,-294 227.5,-294 227.5,-294 334.5,-294 334.5,-294 340.5,-294 346.5,-300 346.5,-306 346.5,-306 346.5,-318 346.5,-318 346.5,-324 340.5,-330 334.5,-330"/>
+<text text-anchor="middle" x="281" y="-309.2" font-family="Arial" font-size="11.00" fill="white">Trapezium (ch129–131)</text>
+</g>
+
+<g id="edge36" class="edge">
+<title>R&#45;&gt;g5</title>
+<path fill="none" stroke="#8a5a2b" stroke-width="2" d="M116.82,-422.79C153.03,-398.21 217.18,-354.65 253.32,-330.12"/>
+</g>
+
+<g id="node43" class="node">
+<title>g6</title>
+<path fill="#c0392b" stroke="#c0392b" d="M336,-213C336,-213 226,-213 226,-213 220,-213 214,-207 214,-201 214,-201 214,-189 214,-189 214,-183 220,-177 226,-177 226,-177 336,-177 336,-177 342,-177 348,-183 348,-189 348,-189 348,-201 348,-201 348,-207 342,-213 336,-213"/>
+<text text-anchor="middle" x="281" y="-192.2" font-family="Arial" font-size="11.00" fill="white">Arc sự nghiệp và sụp đổ</text>
+</g>
+
+<g id="edge42" class="edge">
+<title>R&#45;&gt;g6</title>
+<path fill="none" stroke="#c0392b" stroke-width="2" d="M103.97,-422.91C139.11,-377.42 230.85,-258.64 266.01,-213.12"/>
+</g>
+
+<g id="node3" class="node">
+<title>s1</title>
+<g id="a_node3"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a75348019a3e8f54be2decaca" xlink:title="📁 SECTOR 1: IKO KIRINO">
+<path fill="none" stroke="#5c677d" stroke-dasharray="5,2" d="M504,-929C504,-929 436,-929 436,-929 430,-929 424,-923 424,-917 424,-917 424,-905 424,-905 424,-899 430,-893 436,-893 436,-893 504,-893 504,-893 510,-893 516,-899 516,-905 516,-905 516,-917 516,-917 516,-923 510,-929 504,-929"/>
+<text text-anchor="middle" x="470" y="-908.2" font-family="Arial" font-size="11.00" fill="#888888">SECTOR 1: Iko</text>
+</a>
+</g>
+</g>
+
+<g id="edge2" class="edge">
+<title>g1&#45;&gt;s1</title>
+<path fill="none" stroke="#5c677d" d="M303.33,-835.15C323.09,-851.12 353.88,-873.96 384,-888 396.47,-893.81 410.68,-898.38 423.86,-901.86"/>
+</g>
+
+<g id="node4" class="node">
+<title>s2</title>
+<g id="a_node4"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a7534808d93e1ce9c71e10fba" xlink:title="📁 SECTOR 2: RIKKA INOHANA">
+<path fill="white" stroke="#5c677d" d="M510.5,-882C510.5,-882 429.5,-882 429.5,-882 423.5,-882 417.5,-876 417.5,-870 417.5,-870 417.5,-858 417.5,-858 417.5,-852 423.5,-846 429.5,-846 429.5,-846 510.5,-846 510.5,-846 516.5,-846 522.5,-852 522.5,-858 522.5,-858 522.5,-870 522.5,-870 522.5,-876 516.5,-882 510.5,-882"/>
+<text text-anchor="middle" x="470" y="-861.2" font-family="Arial" font-size="11.00">SECTOR 2: Rikka</text>
+</a>
+</g>
+</g>
+
+<g id="edge3" class="edge">
+<title>g1&#45;&gt;s2</title>
+<path fill="none" stroke="#5c677d" d="M331.13,-829.35C357.64,-836.01 390.35,-844.23 417.26,-850.99"/>
+</g>
+
+<g id="node8" class="node">
+<title>s3</title>
+<g id="a_node8"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a75348077a8cfdd9e4430b896" xlink:title="📁 SECTOR 3: NENE HIMEKAWA">
+<path fill="none" stroke="#5c677d" stroke-dasharray="5,2" d="M510,-835C510,-835 430,-835 430,-835 424,-835 418,-829 418,-823 418,-823 418,-811 418,-811 418,-805 424,-799 430,-799 430,-799 510,-799 510,-799 516,-799 522,-805 522,-811 522,-811 522,-823 522,-823 522,-829 516,-835 510,-835"/>
+<text text-anchor="middle" x="470" y="-814.2" font-family="Arial" font-size="11.00" fill="#888888">SECTOR 3: Nene</text>
+</a>
+</g>
+</g>
+
+<g id="edge7" class="edge">
+<title>g1&#45;&gt;s3</title>
+<path fill="none" stroke="#5c677d" d="M331.13,-817C357.86,-817 390.89,-817 417.91,-817"/>
+</g>
+
+<g id="node9" class="node">
+<title>s4</title>
+<g id="a_node9"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a75348089867bfd8939465731" xlink:title="📁 SECTOR 4: SHINOBU UZUKI">
+<path fill="none" stroke="#5c677d" stroke-dasharray="5,2" d="M517,-788C517,-788 423,-788 423,-788 417,-788 411,-782 411,-776 411,-776 411,-764 411,-764 411,-758 417,-752 423,-752 423,-752 517,-752 517,-752 523,-752 529,-758 529,-764 529,-764 529,-776 529,-776 529,-782 523,-788 517,-788"/>
+<text text-anchor="middle" x="470" y="-767.2" font-family="Arial" font-size="11.00" fill="#888888">SECTOR 4: Shinobu</text>
+</a>
+</g>
+</g>
+
+<g id="edge8" class="edge">
+<title>g1&#45;&gt;s4</title>
+<path fill="none" stroke="#5c677d" d="M331.13,-804.65C355.59,-798.5 385.32,-791.03 410.9,-784.6"/>
+</g>
+
+<g id="node5" class="node">
+<title>s2a</title>
+<g id="a_node5"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a7534803298aedd31d09b03a6" xlink:title="giải mã những bí ẩn mà rikka đang thực sự che giấu đối với arisu yamabuki">
+<path fill="white" stroke="#5c677d" d="M732,-929C732,-929 634,-929 634,-929 628,-929 622,-923 622,-917 622,-917 622,-905 622,-905 622,-899 628,-893 634,-893 634,-893 732,-893 732,-893 738,-893 744,-899 744,-905 744,-905 744,-917 744,-917 744,-923 738,-929 732,-929"/>
+<text text-anchor="middle" x="683" y="-908.2" font-family="Arial" font-size="11.00">Bí ẩn Rikka giấu Arisu</text>
+</a>
+</g>
+</g>
+
+<g id="edge4" class="edge">
+<title>s2&#45;&gt;s2a</title>
+<path fill="none" stroke="#5c677d" d="M522.62,-875.5C552.63,-882.18 590.6,-890.64 621.94,-897.62"/>
+</g>
+
+<g id="node6" class="node">
+<title>s2b</title>
+<g id="a_node6"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a7534805bb5d8e29962acebc2" xlink:title="Những hành động bất thường của rikka">
+<path fill="white" stroke="#5c677d" d="M734.5,-882C734.5,-882 631.5,-882 631.5,-882 625.5,-882 619.5,-876 619.5,-870 619.5,-870 619.5,-858 619.5,-858 619.5,-852 625.5,-846 631.5,-846 631.5,-846 734.5,-846 734.5,-846 740.5,-846 746.5,-852 746.5,-858 746.5,-858 746.5,-870 746.5,-870 746.5,-876 740.5,-882 734.5,-882"/>
+<text text-anchor="middle" x="683" y="-861.2" font-family="Arial" font-size="11.00">Hành động bất thường</text>
+</a>
+</g>
+</g>
+
+<g id="edge5" class="edge">
+<title>s2&#45;&gt;s2b</title>
+<path fill="none" stroke="#5c677d" d="M522.62,-864C551.78,-864 588.44,-864 619.25,-864"/>
+</g>
+
+<g id="node7" class="node">
+<title>s2c</title>
+<g id="a_node7"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480fb9603cad95e25cb4e" xlink:title="Những lần cảm xúc của rikka bị che giấu có chủ ý khi đối diện với arisu">
+<path fill="white" stroke="#5c677d" d="M737.5,-835C737.5,-835 628.5,-835 628.5,-835 622.5,-835 616.5,-829 616.5,-823 616.5,-823 616.5,-811 616.5,-811 616.5,-805 622.5,-799 628.5,-799 628.5,-799 737.5,-799 737.5,-799 743.5,-799 749.5,-805 749.5,-811 749.5,-811 749.5,-823 749.5,-823 749.5,-829 743.5,-835 737.5,-835"/>
+<text text-anchor="middle" x="683" y="-814.2" font-family="Arial" font-size="11.00">Cảm xúc Rikka che giấu</text>
+</a>
+</g>
+</g>
+
+<g id="edge6" class="edge">
+<title>s2&#45;&gt;s2c</title>
+<path fill="none" stroke="#5c677d" d="M522.62,-852.5C550.8,-846.22 586,-838.38 616.14,-831.67"/>
+</g>
+
+<g id="node11" class="node">
+<title>lp</title>
+<g id="a_node11"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480aa9d7fd4785085b346" xlink:title="Apollo: Lagrange point (105&#45;107)">
+<path fill="white" stroke="#1d6fa5" d="M534,-741C534,-741 406,-741 406,-741 400,-741 394,-735 394,-729 394,-729 394,-717 394,-717 394,-711 400,-705 406,-705 406,-705 534,-705 534,-705 540,-705 546,-711 546,-717 546,-717 546,-729 546,-729 546,-735 540,-741 534,-741"/>
+<text text-anchor="middle" x="470" y="-720.2" font-family="Arial" font-size="11.00">Lagrange point (ch105–107)</text>
+</a>
+</g>
+</g>
+
+<g id="edge10" class="edge">
+<title>g2&#45;&gt;lp</title>
+<path fill="none" stroke="#1d6fa5" d="M306.06,-600.14C341.97,-627.22 409.18,-677.89 445.03,-704.93"/>
+</g>
+
+<g id="node20" class="node">
+<title>mm</title>
+<g id="a_node20"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3cb6029a753480d08d3cc03a6d27a628" xlink:title="Apollo: Apollo Mission Mode Selection (chap 50 review)">
+<path fill="white" stroke="#1d6fa5" d="M516,-647C516,-647 424,-647 424,-647 418,-647 412,-641 412,-635 412,-635 412,-623 412,-623 412,-617 418,-611 424,-611 424,-611 516,-611 516,-611 522,-611 528,-617 528,-623 528,-623 528,-635 528,-635 528,-641 522,-647 516,-647"/>
+<text text-anchor="middle" x="470" y="-626.2" font-family="Arial" font-size="11.00">Mission Mode (ch50)</text>
+</a>
+</g>
+</g>
+
+<g id="edge19" class="edge">
+<title>g2&#45;&gt;mm</title>
+<path fill="none" stroke="#1d6fa5" d="M334.59,-595.22C358.68,-601.27 387.28,-608.46 411.9,-614.65"/>
+</g>
+
+<g id="node24" class="node">
+<title>mc</title>
+<g id="a_node24"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480619920daa5a3c60eda" xlink:title="Apollo: Mary christmas (honey and viewer 2) (chap 113&#45;118)">
+<path fill="none" stroke="#1d6fa5" stroke-dasharray="5,2" d="M535.5,-600C535.5,-600 404.5,-600 404.5,-600 398.5,-600 392.5,-594 392.5,-588 392.5,-588 392.5,-576 392.5,-576 392.5,-570 398.5,-564 404.5,-564 404.5,-564 535.5,-564 535.5,-564 541.5,-564 547.5,-570 547.5,-576 547.5,-576 547.5,-588 547.5,-588 547.5,-594 541.5,-600 535.5,-600"/>
+<text text-anchor="middle" x="470" y="-579.2" font-family="Arial" font-size="11.00" fill="#888888">Mary Christmas (ch113–118)</text>
+</a>
+</g>
+</g>
+
+<g id="edge23" class="edge">
+<title>g2&#45;&gt;mc</title>
+<path fill="none" stroke="#1d6fa5" d="M334.59,-582C352.52,-582 372.95,-582 392.38,-582"/>
+</g>
+
+<g id="node25" class="node">
+<title>ws</title>
+<g id="a_node25"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a75348050b5e1f1b91bfde22a" xlink:title="Apollo: Why Separating Apollo and the Wife Violates Narrative Logic">
+<path fill="none" stroke="#1d6fa5" stroke-dasharray="5,2" d="M512.5,-553C512.5,-553 427.5,-553 427.5,-553 421.5,-553 415.5,-547 415.5,-541 415.5,-541 415.5,-529 415.5,-529 415.5,-523 421.5,-517 427.5,-517 427.5,-517 512.5,-517 512.5,-517 518.5,-517 524.5,-523 524.5,-529 524.5,-529 524.5,-541 524.5,-541 524.5,-547 518.5,-553 512.5,-553"/>
+<text text-anchor="middle" x="470" y="-532.2" font-family="Arial" font-size="11.00" fill="#888888">Apollo và người vợ</text>
+</a>
+</g>
+</g>
+
+<g id="edge24" class="edge">
+<title>g2&#45;&gt;ws</title>
+<path fill="none" stroke="#1d6fa5" d="M334.59,-568.78C359.76,-562.46 389.86,-554.89 415.18,-548.53"/>
+</g>
+
+<g id="node12" class="node">
+<title>lpk</title>
+<g id="a_node12"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a7534804097b9fe82e43c9baf" xlink:title="Kiến thức Lagrange point">
+<path fill="white" stroke="#1d6fa5" d="M740,-788C740,-788 626,-788 626,-788 620,-788 614,-782 614,-776 614,-776 614,-764 614,-764 614,-758 620,-752 626,-752 626,-752 740,-752 740,-752 746,-752 752,-758 752,-764 752,-764 752,-776 752,-776 752,-782 746,-788 740,-788"/>
+<text text-anchor="middle" x="683" y="-767.2" font-family="Arial" font-size="11.00">Kiến thức Lagrange point</text>
+</a>
+</g>
+</g>
+
+<g id="edge11" class="edge">
+<title>lp&#45;&gt;lpk</title>
+<path fill="none" stroke="#1d6fa5" d="M546.28,-739.77C568.3,-744.67 592.23,-750 613.78,-754.8"/>
+</g>
+
+<g id="node13" class="node">
+<title>lpv</title>
+<g id="a_node13"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480eb9f14eb027a4453a3" xlink:title="Phân tích vị trí đứng của các cô gái ở điểm lagrange point">
+<path fill="white" stroke="#1d6fa5" d="M740.5,-741C740.5,-741 625.5,-741 625.5,-741 619.5,-741 613.5,-735 613.5,-729 613.5,-729 613.5,-717 613.5,-717 613.5,-711 619.5,-705 625.5,-705 625.5,-705 740.5,-705 740.5,-705 746.5,-705 752.5,-711 752.5,-717 752.5,-717 752.5,-729 752.5,-729 752.5,-735 746.5,-741 740.5,-741"/>
+<text text-anchor="middle" x="683" y="-720.2" font-family="Arial" font-size="11.00">Vị trí đứng của các cô gái</text>
+</a>
+</g>
+</g>
+
+<g id="edge12" class="edge">
+<title>lp&#45;&gt;lpv</title>
+<path fill="none" stroke="#1d6fa5" d="M546.28,-723C568.18,-723 591.97,-723 613.43,-723"/>
+</g>
+
+<g id="node14" class="node">
+<title>lv1</title>
+<g id="a_node14"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480fa8343fa3b2e37e715" xlink:title="Lagrange point: Apollo">
+<path fill="white" stroke="#1d6fa5" d="M875.5,-858C875.5,-858 845.5,-858 845.5,-858 839.5,-858 833.5,-852 833.5,-846 833.5,-846 833.5,-834 833.5,-834 833.5,-828 839.5,-822 845.5,-822 845.5,-822 875.5,-822 875.5,-822 881.5,-822 887.5,-828 887.5,-834 887.5,-834 887.5,-846 887.5,-846 887.5,-852 881.5,-858 875.5,-858"/>
+<text text-anchor="middle" x="860.5" y="-837.2" font-family="Arial" font-size="11.00">Apollo</text>
+</a>
+</g>
+</g>
+
+<g id="edge13" class="edge">
+<title>lpv&#45;&gt;lv1</title>
+<path fill="none" stroke="#1d6fa5" d="M752.81,-734.76C760.43,-737.92 767.7,-741.93 774,-747 801.24,-768.95 784.77,-792.76 810,-817 816.56,-823.3 825.16,-828.11 833.35,-831.66"/>
+</g>
+
+<g id="node15" class="node">
+<title>lv2</title>
+<g id="a_node15"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480e1bf84de4bbccd6913" xlink:title="Lagrange point: Rikka Inohana">
+<path fill="white" stroke="#1d6fa5" d="M875.5,-811C875.5,-811 845.5,-811 845.5,-811 839.5,-811 833.5,-805 833.5,-799 833.5,-799 833.5,-787 833.5,-787 833.5,-781 839.5,-775 845.5,-775 845.5,-775 875.5,-775 875.5,-775 881.5,-775 887.5,-781 887.5,-787 887.5,-787 887.5,-799 887.5,-799 887.5,-805 881.5,-811 875.5,-811"/>
+<text text-anchor="middle" x="860.5" y="-790.2" font-family="Arial" font-size="11.00">Rikka</text>
+</a>
+</g>
+</g>
+
+<g id="edge14" class="edge">
+<title>lpv&#45;&gt;lv2</title>
+<path fill="none" stroke="#1d6fa5" d="M752.58,-738.91C759.92,-741.31 767.19,-744 774,-747 791.38,-754.65 793.35,-760.87 810,-770 817.48,-774.1 825.82,-778.16 833.48,-781.7"/>
+</g>
+
+<g id="node16" class="node">
+<title>lv3</title>
+<g id="a_node16"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480ba8175e5b3afedb668" xlink:title="Lagrange point: Iko Kirino">
+<path fill="white" stroke="#1d6fa5" d="M875.5,-764C875.5,-764 845.5,-764 845.5,-764 839.5,-764 833.5,-758 833.5,-752 833.5,-752 833.5,-740 833.5,-740 833.5,-734 839.5,-728 845.5,-728 845.5,-728 875.5,-728 875.5,-728 881.5,-728 887.5,-734 887.5,-740 887.5,-740 887.5,-752 887.5,-752 887.5,-758 881.5,-764 875.5,-764"/>
+<text text-anchor="middle" x="860.5" y="-743.2" font-family="Arial" font-size="11.00">Iko</text>
+</a>
+</g>
+</g>
+
+<g id="edge15" class="edge">
+<title>lpv&#45;&gt;lv3</title>
+<path fill="none" stroke="#1d6fa5" d="M752.61,-731.99C780.87,-735.7 811.92,-739.76 833.24,-742.56"/>
+</g>
+
+<g id="node17" class="node">
+<title>lv4</title>
+<g id="a_node17"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480ab89b3d551382d6953" xlink:title="Lagrange point: Nene Himekawa">
+<path fill="white" stroke="#1d6fa5" d="M875.5,-717C875.5,-717 845.5,-717 845.5,-717 839.5,-717 833.5,-711 833.5,-705 833.5,-705 833.5,-693 833.5,-693 833.5,-687 839.5,-681 845.5,-681 845.5,-681 875.5,-681 875.5,-681 881.5,-681 887.5,-687 887.5,-693 887.5,-693 887.5,-705 887.5,-705 887.5,-711 881.5,-717 875.5,-717"/>
+<text text-anchor="middle" x="860.5" y="-696.2" font-family="Arial" font-size="11.00">Nene</text>
+</a>
+</g>
+</g>
+
+<g id="edge16" class="edge">
+<title>lpv&#45;&gt;lv4</title>
+<path fill="none" stroke="#1d6fa5" d="M752.61,-713.62C780.87,-709.75 811.92,-705.51 833.24,-702.59"/>
+</g>
+
+<g id="node18" class="node">
+<title>lv5</title>
+<g id="a_node18"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a753480248d94ef72cf88e3ad" xlink:title="Lagrange point: Shinobu Uzuki">
+<path fill="white" stroke="#1d6fa5" d="M876.5,-670C876.5,-670 844.5,-670 844.5,-670 838.5,-670 832.5,-664 832.5,-658 832.5,-658 832.5,-646 832.5,-646 832.5,-640 838.5,-634 844.5,-634 844.5,-634 876.5,-634 876.5,-634 882.5,-634 888.5,-640 888.5,-646 888.5,-646 888.5,-658 888.5,-658 888.5,-664 882.5,-670 876.5,-670"/>
+<text text-anchor="middle" x="860.5" y="-649.2" font-family="Arial" font-size="11.00">Shinobu</text>
+</a>
+</g>
+</g>
+
+<g id="edge17" class="edge">
+<title>lpv&#45;&gt;lv5</title>
+<path fill="none" stroke="#1d6fa5" d="M752.65,-708.06C759.98,-705.7 767.22,-703.02 774,-700 791.57,-692.17 793.31,-685.55 810,-676 817.13,-671.92 825.05,-667.87 832.44,-664.3"/>
+</g>
+
+<g id="node19" class="node">
+<title>lv6</title>
+<g id="a_node19"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a7534809ea7f6c12d6b793b37" xlink:title="Lagrange point: Arisu Yamabuki">
+<path fill="white" stroke="#1d6fa5" d="M875.5,-623C875.5,-623 845.5,-623 845.5,-623 839.5,-623 833.5,-617 833.5,-611 833.5,-611 833.5,-599 833.5,-599 833.5,-593 839.5,-587 845.5,-587 845.5,-587 875.5,-587 875.5,-587 881.5,-587 887.5,-593 887.5,-599 887.5,-599 887.5,-611 887.5,-611 887.5,-617 881.5,-623 875.5,-623"/>
+<text text-anchor="middle" x="860.5" y="-602.2" font-family="Arial" font-size="11.00">Arisu</text>
+</a>
+</g>
+</g>
+
+<g id="edge18" class="edge">
+<title>lpv&#45;&gt;lv6</title>
+<path fill="none" stroke="#1d6fa5" d="M752.82,-712.09C760.44,-709 767.71,-705.04 774,-700 801.6,-677.87 784.76,-653.79 810,-629 816.54,-622.57 825.14,-617.59 833.33,-613.88"/>
+</g>
+
+<g id="node21" class="node">
+<title>mm1</title>
+<g id="a_node21"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3d86029a75348058af4be29da995979d" xlink:title="Những gì về 4 phương án tiếp cận mặt trăng trong sứ mệnh Apollo của Nasa">
+<path fill="white" stroke="#1d6fa5" d="M738,-694C738,-694 628,-694 628,-694 622,-694 616,-688 616,-682 616,-682 616,-670 616,-670 616,-664 622,-658 628,-658 628,-658 738,-658 738,-658 744,-658 750,-664 750,-670 750,-670 750,-682 750,-682 750,-688 744,-694 738,-694"/>
+<text text-anchor="middle" x="683" y="-673.2" font-family="Arial" font-size="11.00">4 phương án của NASA</text>
+</a>
+</g>
+</g>
+
+<g id="edge20" class="edge">
+<title>mm&#45;&gt;mm1</title>
+<path fill="none" stroke="#1d6fa5" d="M528.1,-641.72C555.19,-647.75 587.73,-655 615.89,-661.27"/>
+</g>
+
+<g id="node22" class="node">
+<title>mm2</title>
+<g id="a_node22"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3eb6029a753481d9b15eee6b4cbd04c1" xlink:title="Sơ đồ ghép ban đầu (chap 50 review)">
+<path fill="white" stroke="#1d6fa5" d="M729,-647C729,-647 637,-647 637,-647 631,-647 625,-641 625,-635 625,-635 625,-623 625,-623 625,-617 631,-611 637,-611 637,-611 729,-611 729,-611 735,-611 741,-617 741,-623 741,-623 741,-635 741,-635 741,-641 735,-647 729,-647"/>
+<text text-anchor="middle" x="683" y="-626.2" font-family="Arial" font-size="11.00">Sơ đồ ghép ban đầu</text>
+</a>
+</g>
+</g>
+
+<g id="edge21" class="edge">
+<title>mm&#45;&gt;mm2</title>
+<path fill="none" stroke="#1d6fa5" d="M528.1,-629C558.12,-629 594.82,-629 624.85,-629"/>
+</g>
+
+<g id="node23" class="node">
+<title>mm3</title>
+<g id="a_node23"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3eb6029a75348140888fe1a98eae75e8" xlink:title="Shinobu ↔ LOR trong arc sụp đổ: người ở lại trên quỹ đạo (chap 10 → 132)">
+<path fill="white" stroke="#1d6fa5" d="M747,-600C747,-600 619,-600 619,-600 613,-600 607,-594 607,-588 607,-588 607,-576 607,-576 607,-570 613,-564 619,-564 619,-564 747,-564 747,-564 753,-564 759,-570 759,-576 759,-576 759,-588 759,-588 759,-594 753,-600 747,-600"/>
+<text text-anchor="middle" x="683" y="-579.2" font-family="Arial" font-size="11.00">Shinobu ↔ LOR, arc sụp đổ</text>
+</a>
+</g>
+</g>
+
+<g id="edge22" class="edge">
+<title>mm&#45;&gt;mm3</title>
+<path fill="none" stroke="#1d6fa5" d="M528.1,-616.28C552.27,-610.9 580.76,-604.55 606.61,-598.79"/>
+</g>
+
+<g id="node44" class="node">
+<title>ca</title>
+<g id="a_node44"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3df6029a7534803cac93c20088f6aa38" xlink:title="Career defining turning points for 3 Girls (Rikka, Iko, Nene)">
+<path fill="white" stroke="#c0392b" d="M517,-130C517,-130 423,-130 423,-130 417,-130 411,-124 411,-118 411,-118 411,-106 411,-106 411,-100 417,-94 423,-94 423,-94 517,-94 517,-94 523,-94 529,-100 529,-106 529,-106 529,-118 529,-118 529,-124 523,-130 517,-130"/>
+<text text-anchor="middle" x="470" y="-109.2" font-family="Arial" font-size="11.00">Career turning points</text>
+</a>
+</g>
+</g>
+
+<g id="edge49" class="edge">
+<title>mm&#45;&gt;ca</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M411.98,-626.57C394.35,-622.72 376.8,-615.1 366,-600.5 341.81,-567.81 351.98,-272.67 366,-234.5 382.06,-190.77 421.42,-151.96 446.85,-130.27"/>
+</g>
+
+<g id="node42" class="node">
+<title>tc4</title>
+<g id="a_node42"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3e96029a753481bf98a0f6b80a61ca7c" xlink:title="4. Bốn cách tặng sô&#45;cô&#45;la và bốn phương án lên Mặt Trăng">
+<path fill="white" stroke="#8a5a2b" d="M740.5,-177C740.5,-177 625.5,-177 625.5,-177 619.5,-177 613.5,-171 613.5,-165 613.5,-165 613.5,-153 613.5,-153 613.5,-147 619.5,-141 625.5,-141 625.5,-141 740.5,-141 740.5,-141 746.5,-141 752.5,-147 752.5,-153 752.5,-153 752.5,-165 752.5,-165 752.5,-171 746.5,-177 740.5,-177"/>
+<text text-anchor="middle" x="683" y="-156.2" font-family="Arial" font-size="11.00">4. Bốn cách tặng sô&#45;cô&#45;la</text>
+</a>
+</g>
+</g>
+
+<g id="edge54" class="edge">
+<title>mm2&#45;&gt;tc4</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M624.72,-627.83C605.39,-624.24 585.81,-616.46 574,-600.5 560.35,-582.06 560.35,-205.94 574,-187.5 583.48,-174.69 597.98,-167.14 613.33,-162.81"/>
+</g>
+
+<g id="node45" class="node">
+<title>ca1</title>
+<g id="a_node45"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3df6029a753480ae9d98f2a8a2fb8c63" xlink:title="Về Arc sự nghiệp của 3 gái (Rikka, Iko, Nene): nó đang trên đà phát triển thế nào?">
+<path fill="white" stroke="#c0392b" d="M738,-130C738,-130 628,-130 628,-130 622,-130 616,-124 616,-118 616,-118 616,-106 616,-106 616,-100 622,-94 628,-94 628,-94 738,-94 738,-94 744,-94 750,-100 750,-106 750,-106 750,-118 750,-118 750,-124 744,-130 738,-130"/>
+<text text-anchor="middle" x="683" y="-109.2" font-family="Arial" font-size="11.00">Arc sự nghiệp đi thế nào</text>
+</a>
+</g>
+</g>
+
+<g id="edge52" class="edge">
+<title>mm3&#45;&gt;ca1</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M606.89,-576.16C593.99,-571.62 582.15,-564.51 574,-553.5 560.35,-535.06 560.35,-158.94 574,-140.5 584.01,-126.98 599.59,-119.33 615.88,-115.12"/>
+</g>
+
+<g id="node27" class="node">
+<title>ay</title>
+<g id="a_node27"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3ca6029a7534801baec2c3b7cc5e8e04" xlink:title="Apollo: As you like it (chap 60&#45;69)">
+<path fill="white" stroke="#7b4ea3" d="M525,-500C525,-500 415,-500 415,-500 409,-500 403,-494 403,-488 403,-488 403,-476 403,-476 403,-470 409,-464 415,-464 415,-464 525,-464 525,-464 531,-464 537,-470 537,-476 537,-476 537,-488 537,-488 537,-494 531,-500 525,-500"/>
+<text text-anchor="middle" x="470" y="-479.2" font-family="Arial" font-size="11.00">As You Like It (ch60–69)</text>
+</a>
+</g>
+</g>
+
+<g id="edge26" class="edge">
+<title>g3&#45;&gt;ay</title>
+<path fill="none" stroke="#7b4ea3" d="M341.68,-477.91C361.14,-478.54 382.85,-479.24 402.75,-479.87"/>
+</g>
+
+<g id="node28" class="node">
+<title>ay1</title>
+<g id="a_node28"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3cc6029a7534806eb2f0fd66fcc60abf" xlink:title="Vở kịch As you like it, nguồn gốc, diễn biến">
+<path fill="white" stroke="#7b4ea3" d="M750.5,-553C750.5,-553 615.5,-553 615.5,-553 609.5,-553 603.5,-547 603.5,-541 603.5,-541 603.5,-529 603.5,-529 603.5,-523 609.5,-517 615.5,-517 615.5,-517 750.5,-517 750.5,-517 756.5,-517 762.5,-523 762.5,-529 762.5,-529 762.5,-541 762.5,-541 762.5,-547 756.5,-553 750.5,-553"/>
+<text text-anchor="middle" x="683" y="-532.2" font-family="Arial" font-size="11.00">Vở kịch: nguồn gốc, diễn biến</text>
+</a>
+</g>
+</g>
+
+<g id="edge27" class="edge">
+<title>ay&#45;&gt;ay1</title>
+<path fill="none" stroke="#7b4ea3" d="M537.18,-498.62C560.39,-504.45 586.55,-511.03 610.2,-516.96"/>
+</g>
+
+<g id="node29" class="node">
+<title>ay2</title>
+<g id="a_node29"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3cc6029a753480ccb04ce579c716ec74" xlink:title="Vở kịch As you like it của Câu lạc bộ Phát thanh đã diễn: tình cờ hay là sắp đặt có chủ ý về diễn biến lâu dài?">
+<path fill="white" stroke="#7b4ea3" d="M762,-506C762,-506 604,-506 604,-506 598,-506 592,-500 592,-494 592,-494 592,-482 592,-482 592,-476 598,-470 604,-470 604,-470 762,-470 762,-470 768,-470 774,-476 774,-482 774,-482 774,-494 774,-494 774,-500 768,-506 762,-506"/>
+<text text-anchor="middle" x="683" y="-485.2" font-family="Arial" font-size="11.00">Vở kịch CLB: tình cờ hay sắp đặt?</text>
+</a>
+</g>
+</g>
+
+<g id="edge28" class="edge">
+<title>ay&#45;&gt;ay2</title>
+<path fill="none" stroke="#7b4ea3" d="M537.18,-483.88C554.47,-484.37 573.39,-484.91 591.69,-485.43"/>
+</g>
+
+<g id="node31" class="node">
+<title>ay3</title>
+<g id="a_node31"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3df6029a753480de9975ef6f5ca99a78" xlink:title="2. Vở kịch lớn mà cả bộ manga đang đi theo">
+<path fill="white" stroke="#7b4ea3" d="M732,-459C732,-459 634,-459 634,-459 628,-459 622,-453 622,-447 622,-447 622,-435 622,-435 622,-429 628,-423 634,-423 634,-423 732,-423 732,-423 738,-423 744,-429 744,-435 744,-435 744,-447 744,-447 744,-453 738,-459 732,-459"/>
+<text text-anchor="middle" x="683" y="-438.2" font-family="Arial" font-size="11.00">Vở kịch lớn của cả bộ</text>
+</a>
+</g>
+</g>
+
+<g id="edge30" class="edge">
+<title>ay&#45;&gt;ay3</title>
+<path fill="none" stroke="#7b4ea3" d="M537.18,-469.14C564.26,-463.88 595.36,-457.84 621.78,-452.7"/>
+</g>
+
+<g id="edge50" class="edge">
+<title>ay&#45;&gt;ca</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M424.34,-463.88C402.5,-452.61 378.44,-435.77 366,-412.5 347.35,-377.61 352.36,-271.63 366,-234.5 382.06,-190.77 421.42,-151.96 446.85,-130.27"/>
+</g>
+
+<g id="node30" class="node">
+<title>ay21</title>
+<g id="a_node30"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3d46029a753480ad8864ce37bc6a5548" xlink:title="Giải mã chap 68, những gì cần được ẩn ý ngầm của tác giả">
+<path fill="white" stroke="#7b4ea3" d="M896,-506C896,-506 825,-506 825,-506 819,-506 813,-500 813,-494 813,-494 813,-482 813,-482 813,-476 819,-470 825,-470 825,-470 896,-470 896,-470 902,-470 908,-476 908,-482 908,-482 908,-494 908,-494 908,-500 902,-506 896,-506"/>
+<text text-anchor="middle" x="860.5" y="-485.2" font-family="Arial" font-size="11.00">Giải mã chap 68</text>
+</a>
+</g>
+</g>
+
+<g id="edge29" class="edge">
+<title>ay2&#45;&gt;ay21</title>
+<path fill="none" stroke="#7b4ea3" d="M774.06,-488C787.53,-488 800.92,-488 812.97,-488"/>
+</g>
+
+<g id="node33" class="node">
+<title>sh</title>
+<g id="a_node33"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3d56029a75348025a631ec9b5ffe4e31" xlink:title="End girl future, Shinobu Uzuki didn&#39;t lose, how the author tricked us (Ch 126 and Ch 127)">
+<path fill="white" stroke="#b5487a" d="M544,-412C544,-412 396,-412 396,-412 390,-412 384,-406 384,-400 384,-400 384,-388 384,-388 384,-382 390,-376 396,-376 396,-376 544,-376 544,-376 550,-376 556,-382 556,-388 556,-388 556,-400 556,-400 556,-406 550,-412 544,-412"/>
+<text text-anchor="middle" x="470" y="-391.2" font-family="Arial" font-size="11.00">Shinobu chưa thua (ch126–127)</text>
+</a>
+</g>
+</g>
+
+<g id="edge32" class="edge">
+<title>g4&#45;&gt;sh</title>
+<path fill="none" stroke="#b5487a" d="M325.84,-403.19C343.22,-402.07 363.83,-400.75 383.91,-399.46"/>
+</g>
+
+<g id="node34" class="node">
+<title>sh1</title>
+<g id="a_node34"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3db6029a753480fd86eacb5237e19533" xlink:title="1. Nguyên nhân dẫn đến việc chap 126 và chap 127 thành 2 chap liên tiếp">
+<path fill="white" stroke="#b5487a" d="M752,-412C752,-412 614,-412 614,-412 608,-412 602,-406 602,-400 602,-400 602,-388 602,-388 602,-382 608,-376 614,-376 614,-376 752,-376 752,-376 758,-376 764,-382 764,-388 764,-388 764,-400 764,-400 764,-406 758,-412 752,-412"/>
+<text text-anchor="middle" x="683" y="-391.2" font-family="Arial" font-size="11.00">1. Vì sao ch126–127 liền nhau</text>
+</a>
+</g>
+</g>
+
+<g id="edge33" class="edge">
+<title>sh&#45;&gt;sh1</title>
+<path fill="none" stroke="#b5487a" d="M556.21,-394C571.31,-394 586.98,-394 601.93,-394"/>
+</g>
+
+<g id="node35" class="node">
+<title>sh2</title>
+<g id="a_node35"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3db6029a753480cea6e7e2801b3abdef" xlink:title="2. Những sợi xích quan trọng đã bị ẩn giấu bởi tác giả">
+<path fill="white" stroke="#b5487a" d="M747,-365C747,-365 619,-365 619,-365 613,-365 607,-359 607,-353 607,-353 607,-341 607,-341 607,-335 613,-329 619,-329 619,-329 747,-329 747,-329 753,-329 759,-335 759,-341 759,-341 759,-353 759,-353 759,-359 753,-365 747,-365"/>
+<text text-anchor="middle" x="683" y="-344.2" font-family="Arial" font-size="11.00">2. Những sợi xích bị ẩn giấu</text>
+</a>
+</g>
+</g>
+
+<g id="edge34" class="edge">
+<title>sh&#45;&gt;sh2</title>
+<path fill="none" stroke="#b5487a" d="M551.97,-375.96C569.99,-371.95 589.01,-367.71 606.78,-363.75"/>
+</g>
+
+<g id="node36" class="node">
+<title>sh21</title>
+<g id="a_node36"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3dd6029a75348097b022e96b54ce7ebe" xlink:title="Phân tích tầng nghĩa của việc chuyển đổi này, ý nghĩa thiên văn">
+<path fill="white" stroke="#b5487a" d="M899,-365C899,-365 822,-365 822,-365 816,-365 810,-359 810,-353 810,-353 810,-341 810,-341 810,-335 816,-329 822,-329 822,-329 899,-329 899,-329 905,-329 911,-335 911,-341 911,-341 911,-353 911,-353 911,-359 905,-365 899,-365"/>
+<text text-anchor="middle" x="860.5" y="-344.2" font-family="Arial" font-size="11.00">Ý nghĩa thiên văn</text>
+</a>
+</g>
+</g>
+
+<g id="edge35" class="edge">
+<title>sh2&#45;&gt;sh21</title>
+<path fill="none" stroke="#b5487a" d="M759.19,-347C776.31,-347 794.08,-347 809.82,-347"/>
+</g>
+
+<g id="node41" class="node">
+<title>tc3</title>
+<g id="a_node41"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3e56029a753481568f53e9588f8bd8f3" xlink:title="3. Chap 131: những dấu hiệu của sao đôi thiên thực">
+<path fill="white" stroke="#8a5a2b" d="M747,-224C747,-224 619,-224 619,-224 613,-224 607,-218 607,-212 607,-212 607,-200 607,-200 607,-194 613,-188 619,-188 619,-188 747,-188 747,-188 753,-188 759,-194 759,-200 759,-200 759,-212 759,-212 759,-218 753,-224 747,-224"/>
+<text text-anchor="middle" x="683" y="-203.2" font-family="Arial" font-size="11.00">3. Ch131: sao đôi thiên thực</text>
+</a>
+</g>
+</g>
+
+<g id="edge55" class="edge">
+<title>sh21&#45;&gt;tc3</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M851.33,-328.74C838.63,-302.54 811.66,-254.6 774,-229 769.47,-225.92 764.55,-223.25 759.43,-220.94"/>
+</g>
+
+<g id="node38" class="node">
+<title>tc</title>
+<g id="a_node38"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3e56029a75348135a74dc9d99b2970df" xlink:title="Trapezium Chocolate (chap 129–131)">
+<path fill="white" stroke="#8a5a2b" d="M517.5,-271C517.5,-271 422.5,-271 422.5,-271 416.5,-271 410.5,-265 410.5,-259 410.5,-259 410.5,-247 410.5,-247 410.5,-241 416.5,-235 422.5,-235 422.5,-235 517.5,-235 517.5,-235 523.5,-235 529.5,-241 529.5,-247 529.5,-247 529.5,-259 529.5,-259 529.5,-265 523.5,-271 517.5,-271"/>
+<text text-anchor="middle" x="470" y="-250.2" font-family="Arial" font-size="11.00">Trapezium Chocolate</text>
+</a>
+</g>
+</g>
+
+<g id="edge37" class="edge">
+<title>g5&#45;&gt;tc</title>
+<path fill="none" stroke="#8a5a2b" d="M339.12,-293.98C362.22,-286.69 388.82,-278.3 411.91,-271.01"/>
+</g>
+
+<g id="edge51" class="edge">
+<title>tc&#45;&gt;mm</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M447.3,-271.07C421.89,-292.9 382.15,-332.26 366,-376.5 348.93,-423.26 336.39,-560.49 366,-600.5 376.8,-615.1 394.35,-622.72 411.98,-626.57"/>
+</g>
+
+<g id="node39" class="node">
+<title>tc1</title>
+<g id="a_node39"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3e56029a753481468dcbe436bc4f04b2" xlink:title="1. Trapezium là gì? Giải thích khoa học">
+<path fill="white" stroke="#8a5a2b" d="M725,-318C725,-318 641,-318 641,-318 635,-318 629,-312 629,-306 629,-306 629,-294 629,-294 629,-288 635,-282 641,-282 641,-282 725,-282 725,-282 731,-282 737,-288 737,-294 737,-294 737,-306 737,-306 737,-312 731,-318 725,-318"/>
+<text text-anchor="middle" x="683" y="-297.2" font-family="Arial" font-size="11.00">1. Trapezium là gì?</text>
+</a>
+</g>
+</g>
+
+<g id="edge38" class="edge">
+<title>tc&#45;&gt;tc1</title>
+<path fill="none" stroke="#8a5a2b" d="M529.78,-266.09C560.87,-273.02 598.75,-281.46 628.95,-288.18"/>
+</g>
+
+<g id="node40" class="node">
+<title>tc2</title>
+<g id="a_node40"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3e56029a753481af9717f7c20f20bef5" xlink:title="2. Bốn cô gái và những hộp sô&#45;cô&#45;la">
+<path fill="white" stroke="#8a5a2b" d="M726,-271C726,-271 640,-271 640,-271 634,-271 628,-265 628,-259 628,-259 628,-247 628,-247 628,-241 634,-235 640,-235 640,-235 726,-235 726,-235 732,-235 738,-241 738,-247 738,-247 738,-259 738,-259 738,-265 732,-271 726,-271"/>
+<text text-anchor="middle" x="683" y="-250.2" font-family="Arial" font-size="11.00">2. Bốn hộp sô&#45;cô&#45;la</text>
+</a>
+</g>
+</g>
+
+<g id="edge39" class="edge">
+<title>tc&#45;&gt;tc2</title>
+<path fill="none" stroke="#8a5a2b" d="M529.78,-253C560.5,-253 597.86,-253 627.88,-253"/>
+</g>
+
+<g id="edge40" class="edge">
+<title>tc&#45;&gt;tc3</title>
+<path fill="none" stroke="#8a5a2b" d="M529.78,-239.91C553.68,-234.58 581.58,-228.37 606.93,-222.72"/>
+</g>
+
+<g id="edge41" class="edge">
+<title>tc&#45;&gt;tc4</title>
+<path fill="none" stroke="#8a5a2b" d="M496.8,-234.97C520.57,-219.07 557.31,-196.27 592,-182 598.71,-179.24 605.84,-176.74 613.04,-174.49"/>
+</g>
+
+<g id="edge43" class="edge">
+<title>g6&#45;&gt;ca</title>
+<path fill="none" stroke="#c0392b" d="M322.58,-176.99C353.83,-163.12 396.86,-144.02 428.18,-130.12"/>
+</g>
+
+<g id="edge44" class="edge">
+<title>ca&#45;&gt;ca1</title>
+<path fill="none" stroke="#c0392b" d="M529.22,-112C556.05,-112 588.03,-112 615.79,-112"/>
+</g>
+
+<g id="node46" class="node">
+<title>ca2</title>
+<path fill="none" stroke="#c0392b" d="M730.5,-83C730.5,-83 635.5,-83 635.5,-83 629.5,-83 623.5,-77 623.5,-71 623.5,-71 623.5,-59 623.5,-59 623.5,-53 629.5,-47 635.5,-47 635.5,-47 730.5,-47 730.5,-47 736.5,-47 742.5,-53 742.5,-59 742.5,-59 742.5,-71 742.5,-71 742.5,-77 736.5,-83 730.5,-83"/>
+<text text-anchor="middle" x="683" y="-62.2" font-family="Arial" font-size="11.00" fill="#666666">Sụp đổ dự báo trước</text>
+</g>
+
+<g id="edge45" class="edge">
+<title>ca&#45;&gt;ca2</title>
+<path fill="none" stroke="#c0392b" d="M529.22,-99.03C558.49,-92.51 593.89,-84.63 623.24,-78.09"/>
+</g>
+
+<g id="edge53" class="edge">
+<title>ca1&#45;&gt;ay3</title>
+<path fill="none" stroke="#bbbbbb" stroke-dasharray="5,2" d="M615.88,-115.12C599.59,-119.33 584.01,-126.98 574,-140.5 556.02,-164.79 556.02,-388.21 574,-412.5 585.23,-427.67 603.48,-435.46 621.86,-439.26"/>
+</g>
+
+<g id="node47" class="node">
+<title>ca21</title>
+<g id="a_node47"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3df6029a7534804cbd7aca45c8514d40" xlink:title="Sự sụp đổ sự nghiệp của Nene được ẩn giấu thế nào?">
+<path fill="white" stroke="#c0392b" d="M875.5,-130C875.5,-130 845.5,-130 845.5,-130 839.5,-130 833.5,-124 833.5,-118 833.5,-118 833.5,-106 833.5,-106 833.5,-100 839.5,-94 845.5,-94 845.5,-94 875.5,-94 875.5,-94 881.5,-94 887.5,-100 887.5,-106 887.5,-106 887.5,-118 887.5,-118 887.5,-124 881.5,-130 875.5,-130"/>
+<text text-anchor="middle" x="860.5" y="-109.2" font-family="Arial" font-size="11.00">Nene</text>
+</a>
+</g>
+</g>
+
+<g id="edge46" class="edge">
+<title>ca2&#45;&gt;ca21</title>
+<path fill="none" stroke="#c0392b" d="M742.63,-79.77C753.09,-82.47 763.87,-85.29 774,-88 793.95,-93.35 816.45,-99.67 833.35,-104.49"/>
+</g>
+
+<g id="node48" class="node">
+<title>ca22</title>
+<g id="a_node48"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3df6029a75348177a11dc15b05fe455f" xlink:title="Sự sụp đổ sự nghiệp của Iko được ẩn giấu thế nào?">
+<path fill="white" stroke="#c0392b" d="M875.5,-83C875.5,-83 845.5,-83 845.5,-83 839.5,-83 833.5,-77 833.5,-71 833.5,-71 833.5,-59 833.5,-59 833.5,-53 839.5,-47 845.5,-47 845.5,-47 875.5,-47 875.5,-47 881.5,-47 887.5,-53 887.5,-59 887.5,-59 887.5,-71 887.5,-71 887.5,-77 881.5,-83 875.5,-83"/>
+<text text-anchor="middle" x="860.5" y="-62.2" font-family="Arial" font-size="11.00">Iko</text>
+</a>
+</g>
+</g>
+
+<g id="edge47" class="edge">
+<title>ca2&#45;&gt;ca22</title>
+<path fill="none" stroke="#c0392b" d="M742.93,-65C773.6,-65 809.55,-65 833.34,-65"/>
+</g>
+
+<g id="node49" class="node">
+<title>ca23</title>
+<g id="a_node49"><a target="_blank" rel="noopener" xlink:href="https://app.notion.com/p/3df6029a7534810f96d5dea5d9005ea6" xlink:title="Sự sụp đổ sự nghiệp của Rikka được ẩn giấu thế nào?">
+<path fill="white" stroke="#c0392b" d="M875.5,-36C875.5,-36 845.5,-36 845.5,-36 839.5,-36 833.5,-30 833.5,-24 833.5,-24 833.5,-12 833.5,-12 833.5,-6 839.5,0 845.5,0 845.5,0 875.5,0 875.5,0 881.5,0 887.5,-6 887.5,-12 887.5,-12 887.5,-24 887.5,-24 887.5,-30 881.5,-36 875.5,-36"/>
+<text text-anchor="middle" x="860.5" y="-15.2" font-family="Arial" font-size="11.00">Rikka</text>
+</a>
+</g>
+</g>
+
+<g id="edge48" class="edge">
+<title>ca2&#45;&gt;ca23</title>
+<path fill="none" stroke="#c0392b" d="M742.93,-49.22C773.6,-41.01 809.55,-31.38 833.34,-25.01"/>
+</g>
+</g>
+</svg></div>
+    <div id="v-d2" hidden><svg data-kind="d2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-d2-version="v0.9.0" preserveAspectRatio="xMinYMin meet" viewBox="0 0 2907 2311"><svg class="d2-128482412 d2-svg" width="2907" height="2311" viewBox="-89 -106 2907 2311"><rect x="-89" y="-106" width="2907" height="2311" rx="0" fill="#FFFFFF" class=" fill-N7" stroke-width="0" /><style type="text/css"><![CDATA[
+.appendix-icon {
+	filter: drop-shadow(0px 0px 32px rgba(31, 36, 58, 0.1));
+}
+.d2-128482412 .text-bold {
+	font-family: "d2-128482412-font-bold";
+}
+@font-face {
+	font-family: d2-128482412-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}]]></style><style type="text/css"><![CDATA[.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-128482412 .fill-N1{fill:#0A0F25;}
+		.d2-128482412 .fill-N7{fill:#FFFFFF;}
+		.d2-128482412 .stroke-B1{stroke:#0D32B2;}
+		.d2-128482412 .stroke-B2{stroke:#0D32B2;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.light-code{display: block}.dark-code{display: none}]]></style><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480cf97c1daced307609e" xlink:href="https://app.notion.com/p/3ca6029a753480cf97c1daced307609e"><g class="Ug=="><g class="shape" ><rect x="12" y="664" width="216" height="240" rx="6" stroke="#0D32B2" fill="#222222" class=" stroke-B1" style="stroke-width:2;" /></g><text x="120" y="789.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">MAYONAKA HEART TUNE</text></g></a><g class="ZzE="><g class="shape" ><rect x="450" y="210" width="167" height="160" stroke="#5c677d" fill="#5c677d" style="stroke-width:2;" /></g><text x="533.5" y="295.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">Hồ sơ 4 nhân vật</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a75348019a3e8f54be2decaca" xlink:href="https://app.notion.com/p/3ca6029a75348019a3e8f54be2decaca"><g class="czE= empty"><g class="shape" ><rect x="758" y="246" width="144" height="66" stroke="#5c677d" fill="white" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" /></g><text x="830" y="284.5" fill="#888888" class="text-bold" style="text-anchor:middle;font-size:16px">SECTOR 1: Iko</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a7534808d93e1ce9c71e10fba" xlink:href="https://app.notion.com/p/3ca6029a7534808d93e1ce9c71e10fba"><g class="czI= g1"><g class="shape" ><rect x="840" y="418" width="162" height="120" stroke="#5c677d" fill="white" style="stroke-width:2;" /></g><text x="921" y="483.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">SECTOR 2: Rikka</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a7534803298aedd31d09b03a6" xlink:href="https://app.notion.com/p/3ca6029a7534803298aedd31d09b03a6"><g class="czJh g1"><g class="shape" ><rect x="1260" y="453" width="201" height="66" stroke="#5c677d" fill="white" style="stroke-width:2;" /></g><text x="1360.5" y="491.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Bí ẩn Rikka giấu Arisu</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a7534805bb5d8e29962acebc2" xlink:href="https://app.notion.com/p/3ca6029a7534805bb5d8e29962acebc2"><g class="czJi g1"><g class="shape" ><rect x="1260" y="539" width="213" height="66" stroke="#5c677d" fill="white" style="stroke-width:2;" /></g><text x="1366.5" y="577.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Hành động bất thường</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480fb9603cad95e25cb4e" xlink:href="https://app.notion.com/p/3ca6029a753480fb9603cad95e25cb4e"><g class="czJj g1"><g class="shape" ><rect x="1260" y="367" width="215" height="66" stroke="#5c677d" fill="white" style="stroke-width:2;" /></g><text x="1367.5" y="405.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Cảm xúc Rikka che giấu</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a75348077a8cfdd9e4430b896" xlink:href="https://app.notion.com/p/3ca6029a75348077a8cfdd9e4430b896"><g class="czM= empty"><g class="shape" ><rect x="758" y="160" width="158" height="66" stroke="#5c677d" fill="white" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" /></g><text x="837" y="198.5" fill="#888888" class="text-bold" style="text-anchor:middle;font-size:16px">SECTOR 3: Nene</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a75348089867bfd8939465731" xlink:href="https://app.notion.com/p/3ca6029a75348089867bfd8939465731"><g class="czQ= empty"><g class="shape" ><rect x="758" y="332" width="180" height="66" stroke="#5c677d" fill="white" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" /></g><text x="848" y="370.5" fill="#888888" class="text-bold" style="text-anchor:middle;font-size:16px">SECTOR 4: Shinobu</text></g></a><g class="ZzI="><g class="shape" ><rect x="436" y="1149" width="184" height="160" stroke="#1d6fa5" fill="#1d6fa5" style="stroke-width:2;" /></g><text x="528" y="1234.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">Apollo và thiên văn</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480aa9d7fd4785085b346" xlink:href="https://app.notion.com/p/3ca6029a753480aa9d7fd4785085b346"><g class="bHA= g2"><g class="shape" ><rect x="776" y="1162" width="244" height="80" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="898" y="1207.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Lagrange point (ch105–107)</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a7534804097b9fe82e43c9baf" xlink:href="https://app.notion.com/p/3ca6029a7534804097b9fe82e43c9baf"><g class="bHBr g2"><g class="shape" ><rect x="1260" y="1156" width="226" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1373" y="1194.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Kiến thức Lagrange point</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480eb9f14eb027a4453a3" xlink:href="https://app.notion.com/p/3ca6029a753480eb9f14eb027a4453a3"><g class="bHB2 g2"><g class="shape" ><rect x="1281" y="1736" width="230" height="240" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1396" y="1861.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Vị trí đứng của các cô gái</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480fa8343fa3b2e37e715" xlink:href="https://app.notion.com/p/3ca6029a753480fa8343fa3b2e37e715"><g class="bHYx g2"><g class="shape" ><rect x="1795" y="1780" width="92" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1841" y="1818.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Apollo</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480e1bf84de4bbccd6913" xlink:href="https://app.notion.com/p/3ca6029a753480e1bf84de4bbccd6913"><g class="bHYy g2"><g class="shape" ><rect x="1795" y="1694" width="84" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1837" y="1732.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Rikka</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480ba8175e5b3afedb668" xlink:href="https://app.notion.com/p/3ca6029a753480ba8175e5b3afedb668"><g class="bHYz g2"><g class="shape" ><rect x="1795" y="1866" width="67" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1828.5" y="1904.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Iko</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480ab89b3d551382d6953" xlink:href="https://app.notion.com/p/3ca6029a753480ab89b3d551382d6953"><g class="bHY0 g2"><g class="shape" ><rect x="1795" y="2038" width="81" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1835.5" y="2076.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Nene</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480248d94ef72cf88e3ad" xlink:href="https://app.notion.com/p/3ca6029a753480248d94ef72cf88e3ad"><g class="bHY1 g2"><g class="shape" ><rect x="1795" y="1952" width="104" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1847" y="1990.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Shinobu</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a7534809ea7f6c12d6b793b37" xlink:href="https://app.notion.com/p/3ca6029a7534809ea7f6c12d6b793b37"><g class="bHY2 g2"><g class="shape" ><rect x="1795" y="1608" width="83" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1836.5" y="1646.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Arisu</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3cb6029a753480d08d3cc03a6d27a628" xlink:href="https://app.notion.com/p/3cb6029a753480d08d3cc03a6d27a628"><g class="bW0= g2"><g class="shape" ><rect x="1305" y="1262" width="187" height="160" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1398.5" y="1347.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Mission Mode (ch50)</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3d86029a75348058af4be29da995979d" xlink:href="https://app.notion.com/p/3d86029a75348058af4be29da995979d"><g class="bW0x g2"><g class="shape" ><rect x="1795" y="1522" width="208" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1899" y="1560.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">4 phương án của NASA</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3eb6029a753481d9b15eee6b4cbd04c1" xlink:href="https://app.notion.com/p/3eb6029a753481d9b15eee6b4cbd04c1"><g class="bW0y g2"><g class="shape" ><rect x="1845" y="1119" width="193" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1941.5" y="1157.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Sơ đồ ghép ban đầu</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3eb6029a75348140888fe1a98eae75e8" xlink:href="https://app.notion.com/p/3eb6029a75348140888fe1a98eae75e8"><g class="bW0z g2"><g class="shape" ><rect x="1823" y="1273" width="236" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;" /></g><text x="1941" y="1311.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Shinobu ↔ LOR, arc sụp đổ</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a753480619920daa5a3c60eda" xlink:href="https://app.notion.com/p/3ca6029a753480619920daa5a3c60eda"><g class="bWM= empty"><g class="shape" ><rect x="758" y="1076" width="247" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" /></g><text x="881.5" y="1114.5" fill="#888888" class="text-bold" style="text-anchor:middle;font-size:16px">Mary Christmas (ch113–118)</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a75348050b5e1f1b91bfde22a" xlink:href="https://app.notion.com/p/3ca6029a75348050b5e1f1b91bfde22a"><g class="d3M= empty"><g class="shape" ><rect x="758" y="1262" width="181" height="66" stroke="#1d6fa5" fill="white" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" /></g><text x="848.5" y="1300.5" fill="#888888" class="text-bold" style="text-anchor:middle;font-size:16px">Apollo và người vợ</text></g></a><g class="ZzM="><g class="shape" ><rect x="417" y="80" width="202" height="66" stroke="#7b4ea3" fill="#7b4ea3" style="stroke-width:2;" /></g><text x="518" y="118.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">Vở kịch As You Like It</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3ca6029a7534801baec2c3b7cc5e8e04" xlink:href="https://app.notion.com/p/3ca6029a7534801baec2c3b7cc5e8e04"><g class="YXk= g3"><g class="shape" ><rect x="1292" y="33" width="215" height="160" stroke="#7b4ea3" fill="white" style="stroke-width:2;" /></g><text x="1399.5" y="118.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">As You Like It (ch60–69)</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3cc6029a7534806eb2f0fd66fcc60abf" xlink:href="https://app.notion.com/p/3cc6029a7534806eb2f0fd66fcc60abf"><g class="YXkx g3"><g class="shape" ><rect x="1795" y="159" width="270" height="66" stroke="#7b4ea3" fill="white" style="stroke-width:2;" /></g><text x="1930" y="197.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Vở kịch: nguồn gốc, diễn biến</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3cc6029a753480ccb04ce579c716ec74" xlink:href="https://app.notion.com/p/3cc6029a753480ccb04ce579c716ec74"><g class="YXky g3"><g class="shape" ><rect x="1795" y="12" width="293" height="66" stroke="#7b4ea3" fill="white" style="stroke-width:2;" /></g><text x="1941.5" y="50.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Vở kịch CLB: tình cờ hay sắp đặt?</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3d46029a753480ad8864ce37bc6a5548" xlink:href="https://app.notion.com/p/3d46029a753480ad8864ce37bc6a5548"><g class="YXkyMQ== g3"><g class="shape" ><rect x="2168" y="12" width="158" height="66" stroke="#7b4ea3" fill="white" style="stroke-width:2;" /></g><text x="2247" y="50.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Giải mã chap 68</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3df6029a753480de9975ef6f5ca99a78" xlink:href="https://app.notion.com/p/3df6029a753480de9975ef6f5ca99a78"><g class="YXkz g3"><g class="shape" ><rect x="2492" y="627" width="208" height="80" stroke="#7b4ea3" fill="white" style="stroke-width:2;" /></g><text x="2596" y="672.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Vở kịch lớn của cả bộ</text></g></a><g class="ZzQ="><g class="shape" ><rect x="441" y="658" width="154" height="66" stroke="#b5487a" fill="#b5487a" style="stroke-width:2;" /></g><text x="518" y="696.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">Tuyến Shinobu</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3d56029a75348025a631ec9b5ffe4e31" xlink:href="https://app.notion.com/p/3d56029a75348025a631ec9b5ffe4e31"><g class="c2g= g4"><g class="shape" ><rect x="758" y="651" width="272" height="80" stroke="#b5487a" fill="white" style="stroke-width:2;" /></g><text x="894" y="696.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Shinobu chưa thua (ch126–127)</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3db6029a753480fd86eacb5237e19533" xlink:href="https://app.notion.com/p/3db6029a753480fd86eacb5237e19533"><g class="c2gx g4"><g class="shape" ><rect x="1260" y="625" width="255" height="66" stroke="#b5487a" fill="white" style="stroke-width:2;" /></g><text x="1387.5" y="663.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">1. Vì sao ch126–127 liền nhau</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3db6029a753480cea6e7e2801b3abdef" xlink:href="https://app.notion.com/p/3db6029a753480cea6e7e2801b3abdef"><g class="c2gy g4"><g class="shape" ><rect x="1261" y="711" width="252" height="66" stroke="#b5487a" fill="white" style="stroke-width:2;" /></g><text x="1387" y="749.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">2. Những sợi xích bị ẩn giấu</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3dd6029a75348097b022e96b54ce7ebe" xlink:href="https://app.notion.com/p/3dd6029a75348097b022e96b54ce7ebe"><g class="c2gyMQ== g4"><g class="shape" ><rect x="1853" y="711" width="176" height="66" stroke="#b5487a" fill="white" style="stroke-width:2;" /></g><text x="1941" y="749.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Ý nghĩa thiên văn</text></g></a><g class="ZzU="><g class="shape" ><rect x="411" y="923" width="213" height="66" stroke="#8a5a2b" fill="#8a5a2b" style="stroke-width:2;" /></g><text x="517.5" y="961.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">Trapezium (ch129–131)</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3e56029a75348135a74dc9d99b2970df" xlink:href="https://app.notion.com/p/3e56029a75348135a74dc9d99b2970df"><g class="dGM= g5"><g class="shape" ><rect x="822" y="856" width="195" height="200" stroke="#8a5a2b" fill="white" style="stroke-width:2;" /></g><text x="919.5" y="961.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Trapezium Chocolate</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3e56029a753481468dcbe436bc4f04b2" xlink:href="https://app.notion.com/p/3e56029a753481468dcbe436bc4f04b2"><g class="dGMx g5"><g class="shape" ><rect x="1260" y="944" width="176" height="66" stroke="#8a5a2b" fill="white" style="stroke-width:2;" /></g><text x="1348" y="982.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">1. Trapezium là gì?</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3e56029a753481af9717f7c20f20bef5" xlink:href="https://app.notion.com/p/3e56029a753481af9717f7c20f20bef5"><g class="dGMy g5"><g class="shape" ><rect x="1260" y="797" width="183" height="66" stroke="#8a5a2b" fill="white" style="stroke-width:2;" /></g><text x="1351.5" y="835.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">2. Bốn hộp sô-cô-la</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3e56029a753481568f53e9588f8bd8f3" xlink:href="https://app.notion.com/p/3e56029a753481568f53e9588f8bd8f3"><g class="dGMz g5"><g class="shape" ><rect x="2168" y="756" width="244" height="80" stroke="#8a5a2b" fill="white" style="stroke-width:2;" /></g><text x="2290" y="801.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">3. Ch131: sao đôi thiên thực</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3e96029a753481bf98a0f6b80a61ca7c" xlink:href="https://app.notion.com/p/3e96029a753481bf98a0f6b80a61ca7c"><g class="dGM0 g5"><g class="shape" ><rect x="2168" y="1060" width="224" height="80" stroke="#8a5a2b" fill="white" style="stroke-width:2;" /></g><text x="2280" y="1105.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">4. Bốn cách tặng sô-cô-la</text></g></a><g class="ZzY="><g class="shape" ><rect x="408" y="1439" width="220" height="66" stroke="#c0392b" fill="#c0392b" style="stroke-width:2;" /></g><text x="518" y="1477.5" fill="white" class="text-bold" style="text-anchor:middle;font-size:16px">Arc sự nghiệp và sụp đổ</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3df6029a7534803cac93c20088f6aa38" xlink:href="https://app.notion.com/p/3df6029a7534803cac93c20088f6aa38"><g class="Y2E= g6"><g class="shape" ><rect x="1833" y="1382" width="197" height="120" stroke="#c0392b" fill="white" style="stroke-width:2;" /></g><text x="1931.5" y="1447.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Career turning points</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3df6029a753480ae9d98f2a8a2fb8c63" xlink:href="https://app.notion.com/p/3df6029a753480ae9d98f2a8a2fb8c63"><g class="Y2Ex g6"><g class="shape" ><rect x="2174" y="1279" width="224" height="80" stroke="#c0392b" fill="white" style="stroke-width:2;" /></g><text x="2286" y="1324.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Arc sự nghiệp đi thế nào</text></g></a><g class="Y2Ey g6"><g class="shape" ><rect x="2201" y="1402" width="199" height="120" stroke="#c0392b" fill="white" style="stroke-width:2;" /></g><text x="2300.5" y="1467.5" fill="#666666" class="text-bold" style="text-anchor:middle;font-size:16px">Sụp đổ dự báo trước</text></g><a target="_blank" rel="noopener" href="https://app.notion.com/p/3df6029a7534804cbd7aca45c8514d40" xlink:href="https://app.notion.com/p/3df6029a7534804cbd7aca45c8514d40"><g class="Y2EyMQ== g6"><g class="shape" ><rect x="2492" y="1343" width="81" height="66" stroke="#c0392b" fill="white" style="stroke-width:2;" /></g><text x="2532.5" y="1381.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Nene</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3df6029a75348177a11dc15b05fe455f" xlink:href="https://app.notion.com/p/3df6029a75348177a11dc15b05fe455f"><g class="Y2EyMg== g6"><g class="shape" ><rect x="2492" y="1429" width="67" height="66" stroke="#c0392b" fill="white" style="stroke-width:2;" /></g><text x="2525.5" y="1467.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Iko</text></g></a><a target="_blank" rel="noopener" href="https://app.notion.com/p/3df6029a7534810f96d5dea5d9005ea6" xlink:href="https://app.notion.com/p/3df6029a7534810f96d5dea5d9005ea6"><g class="Y2EyMw== g6"><g class="shape" ><rect x="2492" y="1515" width="84" height="66" stroke="#c0392b" fill="white" style="stroke-width:2;" /></g><text x="2534" y="1553.5" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Rikka</text></g></a><g class="KFIgLS0gZzEpWzBd eg1"><path d="M 230 733.213989 L 308 733.213989 S 318 733.213989 318 723.213989 L 318 300.476013 S 318 290.476013 328 290.476013 L 448 290.476013" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcxIC0tIHMxKVswXQ== eg1"><path d="M 619 279 L 756 279" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcxIC0tIHMyKVswXQ== eg1"><path d="M 619 338.476013 L 658 338.476013 S 668 338.476013 668 348.476013 L 668 468 S 668 478 678 478 L 839 478" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHMyIC0tIHMyYSlbMF0= eg1"><path d="M 1004 486 L 1258 486" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHMyIC0tIHMyYilbMF0= eg1"><path d="M 1004 508 L 1060 508 S 1070 508 1070 518 L 1070 562 S 1070 572 1080 572 L 1258 572" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHMyIC0tIHMyYylbMF0= eg1"><path d="M 1004 448 L 1060 448 S 1070 448 1070 438 L 1070 410 S 1070 400 1080 400 L 1258 400" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcxIC0tIHMzKVswXQ== eg1"><path d="M 619 242.475998 L 658 242.475998 S 668 242.475998 668 232.475998 L 668 203 S 668 193 678 193 L 756 193" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcxIC0tIHM0KVswXQ== eg1"><path d="M 619 306.476013 L 708 306.476013 S 718 306.476013 718 316.476013 L 718 355 S 718 365 728 365 L 756 365" stroke="#5c677d" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KFIgLS0gZzIpWzBd eg2"><path d="M 230 836.070984 L 308 836.070984 S 318 836.070984 318 846.070984 L 318 1219.975952 S 318 1229.975952 328 1229.975952 L 435 1229.975952" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcyIC0tIGxwKVswXQ== eg2"><path d="M 623 1202.833008 L 775 1202.833008" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwIC0tIGxwaylbMF0= eg2"><path d="M 1023 1189.5 L 1258 1189.5" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwIC0tIGxwdilbMF0= eg2"><path d="M 1023 1216.166016 L 1060 1216.166016 S 1070 1216.166016 1070 1226.166016 L 1070 1846.975952 S 1070 1856.975952 1080 1856.975952 L 1279 1856.975952" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwdiAtLSBsdjEpWzBd eg2"><path d="M 1513 1839.833008 L 1645 1839.833008 S 1655 1839.833008 1655 1829.833008 L 1655 1823.80896 S 1655 1813.80896 1665 1813.80896 L 1793 1813.80896" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwdiAtLSBsdjIpWzBd eg2"><path d="M 1513 1805.546997 L 1595 1805.546997 S 1605 1805.546997 1605 1795.546997 L 1605 1737.80896 S 1605 1727.80896 1615 1727.80896 L 1793 1727.80896" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwdiAtLSBsdjMpWzBd eg2"><path d="M 1513 1874.119019 L 1645 1874.119019 S 1655 1874.119019 1655 1884.119019 L 1655 1889.80896 S 1655 1899.80896 1665 1899.80896 L 1793 1899.80896" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwdiAtLSBsdjQpWzBd eg2"><path d="M 1513 1942.689941 L 1545 1942.689941 S 1555 1942.689941 1555 1952.689941 L 1555 2061.809082 S 1555 2071.809082 1565 2071.809082 L 1793 2071.809082" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwdiAtLSBsdjUpWzBd eg2"><path d="M 1513 1908.404053 L 1595 1908.404053 S 1605 1908.404053 1605 1918.404053 L 1605 1975.80896 S 1605 1985.80896 1615 1985.80896 L 1793 1985.80896" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGxwdiAtLSBsdjYpWzBd eg2"><path d="M 1513 1771.260986 L 1545 1771.260986 S 1555 1771.260986 1555 1761.260986 L 1555 1651.80896 S 1555 1641.80896 1565 1641.80896 L 1793 1641.80896" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcyIC0tIG1tKVswXQ== eg2"><path d="M 623 1277.975952 L 658 1277.975952 S 668 1277.975952 668 1287.975952 L 668 1358.833008 S 668 1368.833008 678 1368.833008 L 1303 1368.833008" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KG1tIC0tIG1tMSlbMF0= eg2"><path d="M 1494 1390.166016 L 1545 1390.166016 S 1555 1390.166016 1555 1400.166016 L 1555 1545.80896 S 1555 1555.80896 1565 1555.80896 L 1793 1555.80896" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KG1tIC0tIG1tMilbMF0= eg2"><path d="M 1494 1294.166016 L 1545 1294.166016 S 1555 1294.166016 1555 1284.166016 L 1555 1162.641968 S 1555 1152.641968 1565 1152.641968 L 1843 1152.641968" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KG1tIC0tIG1tMylbMF0= eg2"><path d="M 1494 1326.166016 L 1822 1326.166016" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcyIC0tIG1jKVswXQ== eg2"><path d="M 623 1181.975952 L 658 1181.975952 S 668 1181.975952 668 1171.975952 L 668 1119.833008 S 668 1109.833008 678 1109.833008 L 756 1109.833008" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGcyIC0tIHdzKVswXQ== eg2"><path d="M 623 1245.975952 L 708 1245.975952 S 718 1245.975952 718 1255.975952 L 718 1285.833008 S 718 1295.833008 728 1295.833008 L 756 1295.833008" stroke="#1d6fa5" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KFIgLS0gZzMpWzBd eg3"><path d="M 230 698.927979 L 258 698.927979 S 268 698.927979 268 688.927979 L 268 123.5 S 268 113.5 278 113.5 L 415 113.5" stroke="#7b4ea3" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGczIC0tIGF5KVswXQ== eg3"><path d="M 621 113.5 L 1290 113.5" stroke="#7b4ea3" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGF5IC0tIGF5MSlbMF0= eg3"><path d="M 1509 129.5 L 1695 129.5 S 1705 129.5 1705 139.5 L 1705 182 S 1705 192 1715 192 L 1793 192" stroke="#7b4ea3" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGF5IC0tIGF5MilbMF0= eg3"><path d="M 1509 45 L 1793 45" stroke="#7b4ea3" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGF5MiAtLSBheTIxKVswXQ== eg3"><path d="M 2090 45 L 2166 45" stroke="#7b4ea3" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGF5IC0tIGF5MylbMF0= eg3"><path d="M 1509 97.5 L 1745 97.5 S 1755 97.5 1755 107.5 L 1755 108 S 1755 118 1765 118 L 2442 118 S 2452 118 2452 128 L 2452 643.833008 S 2452 653.833008 2462 653.833008 L 2490 653.833008" stroke="#7b4ea3" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KFIgLS0gZzQpWzBd eg4"><path d="M 230 767.5 L 358 767.5 S 368 767.5 368 757.5 L 368 701.333008 S 368 691.333008 378 691.333008 L 439 691.333008" stroke="#b5487a" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGc0IC0tIHNoKVswXQ== eg4"><path d="M 597 691.333008 L 756 691.333008" stroke="#b5487a" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHNoIC0tIHNoMSlbMF0= eg4"><path d="M 1032 678 L 1060 678 S 1070 678 1070 668 L 1070 668 S 1070 658 1080 658 L 1258 658" stroke="#b5487a" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHNoIC0tIHNoMilbMF0= eg4"><path d="M 1032 704.666016 L 1060 704.666016 S 1070 704.666016 1070 714.666016 L 1070 734 S 1070 744 1080 744 L 1260 744" stroke="#b5487a" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHNoMiAtLSBzaDIxKVswXQ== eg4"><path d="M 1515.5 744 L 1851.5 744" stroke="#b5487a" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KFIgLS0gZzUpWzBd eg5"><path d="M 230 801.784973 L 358 801.784973 S 368 801.784973 368 811.784973 L 368 946.833008 S 368 956.833008 378 956.833008 L 410 956.833008" stroke="#8a5a2b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGc1IC0tIHRjKVswXQ== eg5"><path d="M 626.166016 956.833008 L 820.166016 956.833008" stroke="#8a5a2b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHRjIC0tIHRjMSlbMF0= eg5"><path d="M 1019 956.833008 L 1258 956.833008" stroke="#8a5a2b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHRjIC0tIHRjMilbMF0= eg5"><path d="M 1019 890.166016 L 1060 890.166016 S 1070 890.166016 1070 880.166016 L 1070 840 S 1070 830 1080 830 L 1258 830" stroke="#8a5a2b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHRjIC0tIHRjMylbMF0= eg5"><path d="M 1019 923.499023 L 1110 923.499023 S 1120 923.499023 1120 913.499023 L 1120 913 S 1120 903 1130 903 L 2118 903 S 2128 903 2128 893 L 2128 820.309021 S 2128 810.309021 2138 810.309021 L 2166 810.309021" stroke="#8a5a2b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KHRjIC0tIHRjNClbMF0= eg5"><path d="M 1019 990.166016 L 1160 990.166016 S 1170 990.166016 1170 1000.166016 L 1170 1043.30896 S 1170 1053.30896 1180 1053.30896 L 2118 1053.30896 S 2128 1053.30896 2128 1063.30896 L 2128 1076.666016 S 2128 1086.666016 2138 1086.666016 L 2166 1086.666016" stroke="#8a5a2b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KFIgLS0gZzYpWzBd eg6"><path d="M 230 870.356995 L 258 870.356995 S 268 870.356995 268 880.356995 L 268 1462.975952 S 268 1472.975952 278 1472.975952 L 406 1472.975952" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGc2IC0tIGNhKVswXQ== eg6"><path d="M 630 1472.80896 L 1831 1472.80896" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGNhIC0tIGNhMSlbMF0= eg6"><path d="M 2032 1422.80896 L 2118 1422.80896 S 2128 1422.80896 2128 1412.80896 L 2128 1343.30896 S 2128 1333.30896 2138 1333.30896 L 2173 1333.30896" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGNhIC0tIGNhMilbMF0= eg6"><path d="M 2032.75 1462.80896 L 2199.75 1462.80896" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGNhMiAtLSBjYTIxKVswXQ== eg6"><path d="M 2403 1432.80896 L 2442 1432.80896 S 2452 1432.80896 2452 1422.80896 L 2452 1386.975952 S 2452 1376.975952 2462 1376.975952 L 2490 1376.975952" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGNhMiAtLSBjYTIyKVswXQ== eg6"><path d="M 2403 1462.975952 L 2490 1462.975952" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KGNhMiAtLSBjYTIzKVswXQ== eg6"><path d="M 2403 1492.80896 L 2442 1492.80896 S 2452 1492.80896 2452 1502.80896 L 2452 1538.975952 S 2452 1548.975952 2462 1548.975952 L 2490 1548.975952" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;" mask="url(#d2-128482412)" /></g><g class="KG1tIC0tIGNhKVswXQ== x"><path d="M 1494 1358.166016 L 1595 1358.166016 S 1605 1358.166016 1605 1368.166016 L 1605 1432.80896 S 1605 1442.80896 1615 1442.80896 L 1831 1442.80896" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g class="KGF5IC0tIGNhKVswXQ== x"><path d="M 1509 161.5 L 1645 161.5 S 1655 161.5 1655 171.5 L 1655 1402.80896 S 1655 1412.80896 1665 1412.80896 L 1831 1412.80896" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g class="KHRjIC0tIG1tKVswXQ== x"><path d="M 1019 1023.499023 L 1110 1023.499023 S 1120 1023.499023 1120 1033.499023 L 1120 1305.5 S 1120 1315.5 1130 1315.5 L 1303 1315.5" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g class="KG1tMyAtLSBjYTEpWzBd x"><path d="M 2061.666016 1306.641968 L 2172.666016 1306.641968" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g class="KGNhMSAtLSBheTMpWzBd x"><path d="M 2401 1319.975952 L 2442 1319.975952 S 2452 1319.975952 2452 1309.975952 L 2452 690.5 S 2452 680.5 2462 680.5 L 2490 680.5" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g class="KG1tMiAtLSB0YzQpWzBd x"><path d="M 2040 1152.641968 L 2118 1152.641968 S 2128 1152.641968 2128 1142.641968 L 2128 1123.333008 S 2128 1113.333008 2138 1113.333008 L 2166 1113.333008" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g class="KHNoMjEgLS0gdGMzKVswXQ== x"><path d="M 2031 744 L 2118 744 S 2128 744 2128 754 L 2128 773.642029 S 2128 783.642029 2138 783.642029 L 2166 783.642029" stroke="#bbbbbb" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" mask="url(#d2-128482412)" /></g><g transform="translate(212 648)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-KI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-KI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(886 230)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OMYQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OMYQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(986 402)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OMZA)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OMZA">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1445 437)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OMZGC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OMZGC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1457 523)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OMZGE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OMZGE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1459 351)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OMZGG)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OMZGG">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(900 144)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OMZQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OMZQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(922 316)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-OM2A)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-OM2A">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1004 1146)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NRYA)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NRYA">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1470 1140)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NRYGW)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NRYGW">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1495 1720)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NRYHM)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NRYHM">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1871 1764)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NR3DC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NR3DC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1863 1678)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NR3DE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NR3DE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1846 1850)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NR3DG)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NR3DG">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1860 2022)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NR3DI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NR3DI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1883 1936)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NR3DK)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NR3DK">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1862 1592)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NR3DM)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NR3DM">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1476 1246)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NVWQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NVWQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1987 1506)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NVWTC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NVWTC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2022 1103)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NVWTE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NVWTE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2043 1257)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NVWTG)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NVWTG">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(989 1060)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-NVRQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-NVRQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(923 1246)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-O5ZQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-O5ZQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1491 17)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MF4Q)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MF4Q">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2049 143)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MF4TC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MF4TC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2072 -4)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MF4TE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MF4TE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2310 -4)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MF4TEMI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MF4TEMI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2684 611)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MF4TG)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MF4TG">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1014 635)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ONUA)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ONUA">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1499 609)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ONUDC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ONUDC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1497 695)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ONUDE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ONUDE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2013 695)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ONUDEMI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ONUDEMI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1001 840)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ORRQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ORRQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1420 928)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ORRTC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ORRTC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1427 781)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ORRTE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ORRTE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2396 740)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ORRTG)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ORRTG">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2376 1044)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-ORRTI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-ORRTI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2014 1366)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MNQQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MNQQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2382 1263)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MNQTC)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MNQTC">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2557 1327)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MNQTEMI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MNQTEMI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2543 1413)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MNQTEMQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MNQTEMQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2560 1499)" class="appendix-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3440_35088111-d2-128482412-MNQTEMY)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M14.3909 16.7965C14.7364 17.2584 15.1772 17.6406 15.6834 17.9171C16.1896 18.1938 16.7494 18.3582 17.3248 18.3993C17.9001 18.4405 18.4777 18.3575 19.0181 18.1559C19.5586 17.9543 20.0492 17.6389 20.4571 17.2309L22.8708 14.8173C23.6036 14.0586 24.0089 13.0425 23.9998 11.9877C23.9906 10.933 23.5676 9.92404 22.8217 9.17821C22.0759 8.43237 21.067 8.00931 20.0123 8.00015C18.9575 7.99098 17.9413 8.39644 17.1827 9.1292L15.7988 10.505" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.609 15.1874C17.2635 14.7255 16.8227 14.3433 16.3165 14.0667C15.8103 13.7902 15.2505 13.6257 14.6752 13.5845C14.0998 13.5433 13.5223 13.6263 12.9819 13.8279C12.4414 14.0295 11.9506 14.345 11.5428 14.753L9.1292 17.1666C8.39644 17.9252 7.99098 18.9414 8.00015 19.9962C8.00931 21.0509 8.43237 22.0598 9.17821 22.8056C9.92405 23.5515 10.933 23.9745 11.9877 23.9837C13.0425 23.9928 14.0586 23.5875 14.8173 22.8547L16.193 21.4788" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3440_35088111-d2-128482412-MNQTEMY">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><mask id="d2-128482412" maskUnits="userSpaceOnUse" x="-89" y="-106" width="2907" height="2311">
+<rect x="-89" y="-106" width="2907" height="2311" fill="white"></rect>
+
+</mask></svg></svg></div>
+  </div>
+  <div class="legend">
+    <span><i class="sw group"></i>Nhóm chủ đề, không bấm</span>
+    <span><i class="sw page"></i>Trang Notion, bấm để mở</span>
+    <span><i class="sw empty"></i>Trang còn trống</span>
+    <span><i class="sw cross"></i>Nối chéo giữa các nhánh</span>
+  </div>
+</div></main>
+<script>
+(function(){
+  var panel=document.getElementById('panel'), current='graphviz', scale={graphviz:0,d2:0};
+  function svgOf(k){return document.querySelector('#v-'+k+' > svg');}
+  function natural(svg){var vb=svg.viewBox&&svg.viewBox.baseVal; return vb&&vb.width?vb.width:svg.getBoundingClientRect().width;}
+  function apply(){
+    var svg=svgOf(current), w=natural(svg), fit=(panel.clientWidth-24)/w;
+    var floor=current==='d2'?0.62:0.72; var s=scale[current]===0?Math.max(floor,Math.min(fit,1.4)):scale[current];
+    svg.style.width=Math.round(w*s)+'px';
+  }
+  document.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){
+    current=b.getAttribute('data-show');
+    document.querySelectorAll('.seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    document.getElementById('v-graphviz').hidden=current!=='graphviz';
+    document.getElementById('v-d2').hidden=current!=='d2';
+    apply(); panel.scrollTo(0,0);
+  });});
+  document.querySelectorAll('.zoom button').forEach(function(b){b.addEventListener('click',function(){
+    var d=+b.getAttribute('data-zoom'), svg=svgOf(current), w=natural(svg);
+    if(d===0){scale[current]=0;} else {var cur=svg.getBoundingClientRect().width/w; scale[current]=Math.max(.2,Math.min(3,cur*(d>0?1.25:0.8)));}
+    apply();
+  });});
+  window.addEventListener('resize',apply); apply();
+})();
+</script>
+</body>
+</html>
